@@ -19,6 +19,6 @@ terraform {
 
 provider "google" {
   # Configuration options
-  project = "zeta-post-416508"
-  region = "us-central1"
+  project = var.gke_project
+  region = var.gke_region
 }

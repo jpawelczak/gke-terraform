@@ -20,9 +20,9 @@ Initiate terraform (terraform init)
 # Observations
 
 ## After "terraform apply":
-Quota blocks deploying the first cluster = had to find a workaround.
-Many services where deployed such Nvidia GPU Plugins or Event Exported Windows.
+- Quota blocks deploying the first cluster = had to find a workaround.
+- Many services where deployed such Nvidia GPU Plugins or Event Exported Windows.
 
 ## After "terraform destroy": 
-Got error: "Error: Cannot destroy cluster because deletion_protection is set to true. 
-Set it to false to proceed with cluster deletion."
+- Got error: "Error: Cannot destroy cluster because deletion_protection is set to true. Set it to false to proceed with cluster deletion."
+- Initiated cluster delete via Console UI
