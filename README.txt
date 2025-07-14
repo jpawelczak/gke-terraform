@@ -6,6 +6,8 @@ Scope
 - us-east-1 region
 - small servers
 - standard cluster
+-- Rapid channel
+-- HPA logs enabled (KCP_HPA)
 - some simple web app
 
 # HOWTO
