@@ -42,8 +42,8 @@ resource "google_container_node_pool" "primary_nodes" {
     }
 
     # preemptible  = true
-    machine_type = "e2-micro"
-    disk_size_gb = 30
+    machine_type = "e2-medium"
+    disk_size_gb = 50
     tags         = ["gke-node", "gke-terraform"]
     metadata = {
       disable-legacy-endpoints = "true"

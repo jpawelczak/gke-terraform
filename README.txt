@@ -8,7 +8,8 @@ Scope
 - standard cluster
 -- Rapid channel
 -- HPA logs enabled (KCP_HPA)
-- some simple web app
+-- defined node_pool's SSD to remove "quota" blocker ("disk_size_gb = 30")
+- deploy simple web app
 
 # HOWTO
 
@@ -16,3 +17,7 @@ Get details about GCP provider from https://registry.terraform.io/providers/hash
 Add details to provider.tf file
 Initiate terraform (terraform init)
 
+# Observations
+
+Quota blocks deploying the first cluster = had to find a workaround.
+Affter "terraform apply": Many services where deployed such Nvidia GPU Plugins or Event Exported Windows.
