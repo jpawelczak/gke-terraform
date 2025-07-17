@@ -5,12 +5,13 @@
 
 # The .terraform.lock.hcl file should be committed to source control to ensure
 # that `terraform init` will select the same provider versions for all users.
-!.terraform.lock.hcl
+#!.terraform.lock.hcl
 
 # .tfstate files
 # These files contain the state of your managed infrastructure. They can contain
 # sensitive data and should not be committed if you use a remote backend.
 *.tfstate
+terraform.tfstate.backup
 *.tfstate.*.backup
 
 # Crash log files
