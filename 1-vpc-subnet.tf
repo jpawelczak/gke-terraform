@@ -8,7 +8,7 @@ resource "google_compute_network" "vpc" {
 # Subnet
 resource "google_compute_subnetwork" "subnet" {
   name          = "gke-terraform-subnet"
-  region        = var.gke_region
+  region        = "us-central1"
   network       = google_compute_network.vpc.name
   ip_cidr_range = "10.10.0.0/24"
 }

@@ -22,6 +22,8 @@ resource "google_container_cluster" "primary" {
 
   network    = google_compute_network.vpc.name
   subnetwork = google_compute_subnetwork.subnet.name
+
+  deletion_protection = false
 }
 
 # Separately Managed Node Pool
