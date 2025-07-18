@@ -21,4 +21,5 @@ provider "google" {
   # Configuration options
   project = var.gke_project
   region = var.gke_region
+  
 }
