@@ -10,9 +10,10 @@
 # .tfstate files
 # These files contain the state of your managed infrastructure. They can contain
 # sensitive data and should not be committed if you use a remote backend.
-terraform.tfstate.backup
 *.tfstate
-*.backup
+*.tfstate.*
+*.tfstate.backup
+terraform.tfstate.backend
 
 # Crash log files
 crash.log
