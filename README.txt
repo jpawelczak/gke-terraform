@@ -29,17 +29,27 @@ Add other files and repeate the steps (terraform init -upgrade, etc)
 
 ## After "terraform apply":
 - Quota blocks deploying the first cluster = had to find a workaround.
-- After adding app.tf (hello world app), have issues to get the app running
 - Many services where deployed such Nvidia GPU Plugins or Event Exported Windows.
+
+## After successful cluster creation
+Connect to cluster via gcloud: gcloud container clusters get-credentials YOURCLUSTERHERE --zone YOURCLUSTERZONEHERE
+Check kubectl connection: kubectl get pods -A
+
+# After adding app & service (app.tf)
+- After adding app.tf (hello world app), had issues to get the app running - had to add roles and re-certificate the user
+
+## App is running and exposed for few minutes
+
+WORKS! Got bellow message when entered exposed service
+
+`Hello, world!
+Version: 2.0.0
+Hostname: example-hello-app-deployment-59d49fb958-tvbhx`
 
 ## After "terraform destroy": 
 - Got error: "Error: Cannot destroy cluster because deletion_protection is set to true. Set it to false to proceed with cluster deletion."
 - Initiated cluster deletion via Console UI
 - Add "deletion_protection = false" to destroy the cluster via "terraform destroy" command
-
-## After successful cluster creation
-Connect to cluster via gcloud: gcloud container clusters get-credentials YOURCLUSTERHERE --zone YOURCLUSTERZONEHERE
-Check kubectl connection: kubectl get pods -A
 
 ## Other
 - GKE Github examples uses "primary" while GKE Startup Guide uses "default" in resource definition - I had to change it accordingly
