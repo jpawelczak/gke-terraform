@@ -14,11 +14,16 @@ v1.0 (DONE)
 
 v1.1 (in-progress)
 
-- add to terraform a way to deploy Locust tool
-- add HPA (KCP_HPA) and VPA to a workload
+- added NAP support to gke.tf from (here)[https://github.com/GoogleCloudPlatform/gke-autoscaling-benchmarking/blob/main/stage02-cluster/cluster.tf]
+- deployed python app in Cloud Run, created and uploaded Locust docker image Artefact Repository using (this)[https://medium.com/@bigface00/locust-distributed-load-testing-on-google-kubernetes-engine-f05ad9ce0fc4] howto
+
+TODO:
+- deploy Locust
+- perform some tests and review HPA logs
 
 Next / ideas
 
+- add/use gke-mcp-server
 - add ArgoCD
 - save rightsizing metrics to BigQuery
 
@@ -46,10 +51,10 @@ Add other files and repeate the steps (terraform init -upgrade, etc)
 Connect to cluster via gcloud: gcloud container clusters get-credentials YOURCLUSTERHERE --zone YOURCLUSTERZONEHERE
 Check kubectl connection: kubectl get pods -A
 
-# After adding app & service (app.tf)
+## After adding app & service (app.tf)
 - After adding app.tf (hello world app), had issues to get the app running - had to add roles and re-certificate the user
 
-## v1.0 App is running and exposed for few minutes
+## v1.0 App is running
 
 WORKS! Got bellow message after entering exposed service
 
@@ -61,6 +66,14 @@ Hostname: example-hello-app-deployment-59d49fb958-tvbhx`
 - Got error: "Error: Cannot destroy cluster because deletion_protection is set to true. Set it to false to proceed with cluster deletion."
 - Initiated cluster deletion via Console UI
 - Add "deletion_protection = false" to destroy the cluster via "terraform destroy" command
+
+## Terraform for managing deployments
+Configuring deployment (eg adding HPA) in terraform looks complex on the first glance.
+
+## Setting up Locust for distributed load testing using terraform
+Deployed Locust via terraform. 
+I used this guide: https://medium.com/@bigface00/locust-distributed-load-testing-on-google-kubernetes-engine-f05ad9ce0fc4
+Github Repo: https://github.com/GoogleCloudPlatform/distributed-load-testing-using-kubernetes
 
 ## Other
 - GKE Github examples uses "primary" while GKE Startup Guide uses "default" in resource definition - I had to change it manually

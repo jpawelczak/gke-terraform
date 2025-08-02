@@ -36,3 +36,5 @@ override.tf.json
 .terraformrc
 terraform.rc
 variables.tf
+export.txt
+/distributed-load-testing-using-kubernetes

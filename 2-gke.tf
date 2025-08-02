@@ -11,6 +11,21 @@ resource "google_container_cluster" "primary" {
     channel = "RAPID"
   }
 
+  cluster_autoscaling {
+    enabled = true
+    autoscaling_profile = "OPTIMIZE_UTILIZATION"
+    resource_limits {
+      resource_type = "cpu"
+      minimum = 4
+      maximum = 100
+    }
+    resource_limits {
+      resource_type = "memory"
+      minimum = 16
+      maximum = 400
+    }
+  }
+
   vertical_pod_autoscaling {
     enabled = true
   }
@@ -30,8 +45,16 @@ resource "google_container_cluster" "primary" {
 resource "google_container_node_pool" "primary_nodes" {
   name       = google_container_cluster.primary.name
   cluster    = google_container_cluster.primary.name
-  
-  node_count = 2
+
+  autoscaling {
+    min_node_count = 1
+    max_node_count = 5
+  }
+
+  management {
+    auto_upgrade = true
+    auto_repair = true
+  }
 
   node_config {
 #    oauth_scopes = [
@@ -43,8 +66,8 @@ resource "google_container_node_pool" "primary_nodes" {
       env = "gke-terraform"
     }
 
-    # preemptible  = true
-    machine_type = "e2-medium"
+    preemptible  = false
+    machine_type = "e2-standard-4"
     disk_size_gb = 50
     tags         = ["gke-node", "gke-terraform"]
     metadata = {
