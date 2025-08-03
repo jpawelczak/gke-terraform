@@ -38,3 +38,4 @@ terraform.rc
 variables.tf
 export.txt
 /distributed-load-testing-using-kubernetes
+/gke-autoscaling-benchmarking

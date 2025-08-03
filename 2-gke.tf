@@ -2,7 +2,7 @@
 # GKE cluster
 resource "google_container_cluster" "primary" {
   name     = "gke-terraform-cluster"
-  location = var.gke_region
+  location = "us-central1"
   
   remove_default_node_pool = true
   initial_node_count = 1
@@ -17,12 +17,12 @@ resource "google_container_cluster" "primary" {
     resource_limits {
       resource_type = "cpu"
       minimum = 4
-      maximum = 100
+      maximum = 20
     }
     resource_limits {
       resource_type = "memory"
-      minimum = 16
-      maximum = 400
+      minimum = 8
+      maximum = 20
     }
   }
 
@@ -47,8 +47,8 @@ resource "google_container_node_pool" "primary_nodes" {
   cluster    = google_container_cluster.primary.name
 
   autoscaling {
-    min_node_count = 1
-    max_node_count = 5
+    min_node_count = 3
+    max_node_count = 10
   }
 
   management {
@@ -66,8 +66,8 @@ resource "google_container_node_pool" "primary_nodes" {
       env = "gke-terraform"
     }
 
-    preemptible  = false
-    machine_type = "e2-standard-4"
+    preemptible  = true
+    machine_type = "e2-medium"
     disk_size_gb = 50
     tags         = ["gke-node", "gke-terraform"]
     metadata = {

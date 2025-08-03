@@ -4,8 +4,7 @@ v1.0 (DONE)
 
 - terraform
 - GKE with k8s 1.33 or newer
-- us-east-1 region
-- small servers
+- us-central1 location
 - standard cluster
 -- Rapid channel
 -- HPA logs enabled (KCP_HPA)
@@ -14,7 +13,7 @@ v1.0 (DONE)
 
 v1.1 (in-progress)
 
-- added NAP support to gke.tf from https://github.com/GoogleCloudPlatform/gke-autoscaling-benchmarking/blob/main/stage02-cluster/cluster.tf
+- added CA and NAP support to gke.tf from https://github.com/GoogleCloudPlatform/gke-autoscaling-benchmarking/blob/main/stage02-cluster/cluster.tf
 - deployed python app in Cloud Run, created and uploaded Locust docker image Artefact Repository using howto https://medium.com/@bigface00/locust-distributed-load-testing-on-google-kubernetes-engine-f05ad9ce0fc4
 
 TODO:
@@ -23,9 +22,9 @@ TODO:
 
 Next / ideas
 
+- save VPA rightsizing metrics to BigQuery
 - add/use gke-mcp-server
 - add ArgoCD
-- save rightsizing metrics to BigQuery
 
 # Useful content
 GKE startup guide: https://cloud.google.com/kubernetes-engine/docs/quickstarts/create-cluster-using-terraform

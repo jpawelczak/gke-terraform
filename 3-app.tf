@@ -17,7 +17,7 @@ provider "kubernetes" {
 
 resource "kubernetes_deployment_v1" "primary" {
   metadata {
-    name = "example-hello-app-deployment"
+    name = "hello-app"
   }
 
   spec {
@@ -94,7 +94,7 @@ resource "kubernetes_deployment_v1" "primary" {
 
 resource "kubernetes_service_v1" "primary" {
   metadata {
-    name = "example-hello-app-loadbalancer"
+    name = "hello-app-lb"
     
     # uncomment below to block the service
     #annotations = {
