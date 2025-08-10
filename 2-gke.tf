@@ -31,12 +31,12 @@ resource "google_container_cluster" "primary" {
     resource_limits {
       resource_type = "cpu"
       minimum       = 1
-      maximum       = 10
+      maximum       = 4
     }
     resource_limits {
       resource_type = "memory"
-      minimum       = 1
-      maximum       = 40 # in GiB
+      minimum       = 2
+      maximum       = 8 # in GiB
     }
     auto_provisioning_defaults {
       oauth_scopes = [
