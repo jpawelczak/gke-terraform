@@ -37,5 +37,8 @@ override.tf.json
 terraform.rc
 variables.tf
 export.txt
+/calendar-app/secret.yaml
+/calendar-app/credentials-secret.yaml
+/calendar-app/server/credentials.json
 /distributed-load-testing-using-kubernetes
 /gke-autoscaling-benchmarking

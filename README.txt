@@ -14,8 +14,10 @@ v1.0 (DONE)
 v1.1 (in-progress)
 
 - added CA and NAP support to gke.tf using Gemini-cli
+- added Google Calendar integration with Gemini using Gemini-cli
 
 TODO:
+- make calendar-app work using Gemini-cli to troubleshoot it
 - deploy Locust
 - perform some tests and review HPA logs
 

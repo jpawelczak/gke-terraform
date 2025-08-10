@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: calendar-app
+  labels:
+    app: calendar-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: calendar-app
+  template:
+    metadata:
+      labels:
+        app: calendar-app
+    spec:
+      containers:
+      - name: calendar-app
+        image: gcr.io/zeta-post-416508/calendar-app:latest
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - secretRef:
+            name: gemini-api-key
+        volumeMounts:
+        - name: google-credentials
+          mountPath: "/app/credentials.json"
+          subPath: "credentials.json"
+      volumes:
+      - name: google-credentials
+        secret:
+          secretName: google-credentials
