@@ -22,6 +22,7 @@ TODO:
 
 Next / ideas
 
+- save usage metrics ("Enable GKE usage metering")
 - save VPA rightsizing metrics to BigQuery
 - add/use gke-mcp-server
 - add ArgoCD
