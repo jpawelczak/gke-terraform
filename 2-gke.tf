@@ -11,21 +11,6 @@ resource "google_container_cluster" "primary" {
     channel = "RAPID"
   }
 
-  cluster_autoscaling {
-    enabled = true
-    autoscaling_profile = "OPTIMIZE_UTILIZATION"
-    resource_limits {
-      resource_type = "cpu"
-      minimum = 4
-      maximum = 20
-    }
-    resource_limits {
-      resource_type = "memory"
-      minimum = 8
-      maximum = 20
-    }
-  }
-
   vertical_pod_autoscaling {
     enabled = true
   }
@@ -46,15 +31,7 @@ resource "google_container_node_pool" "primary_nodes" {
   name       = google_container_cluster.primary.name
   cluster    = google_container_cluster.primary.name
 
-  autoscaling {
-    min_node_count = 3
-    max_node_count = 10
-  }
-
-  management {
-    auto_upgrade = true
-    auto_repair = true
-  }
+  node_count = 2
 
   node_config {
 #    oauth_scopes = [
