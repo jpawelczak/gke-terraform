@@ -24,14 +24,44 @@ resource "google_container_cluster" "primary" {
   subnetwork = google_compute_subnetwork.subnet.name
 
   deletion_protection = false
+  
+  cluster_autoscaling {
+    enabled = true
+    autoscaling_profile = "OPTIMIZE_UTILIZATION"
+    resource_limits {
+      resource_type = "cpu"
+      minimum       = 1
+      maximum       = 10
+    }
+    resource_limits {
+      resource_type = "memory"
+      minimum       = 1
+      maximum       = 40 # in GiB
+    }
+    auto_provisioning_defaults {
+      oauth_scopes = [
+        "https://www.googleapis.com/auth/cloud-platform"
+      ]
+      service_account = "default"
+      # network_tags {
+      #   tags = ["gke-terraform-nap"]
+      # }
+    }
+  }
 }
 
 # Separately Managed Node Pool
 resource "google_container_node_pool" "primary_nodes" {
   name       = google_container_cluster.primary.name
   cluster    = google_container_cluster.primary.name
+  location   = "us-central1"
 
   node_count = 2
+
+  autoscaling {
+    min_node_count = 1
+    max_node_count = 5
+  }
 
   node_config {
 #    oauth_scopes = [

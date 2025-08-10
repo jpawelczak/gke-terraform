@@ -13,8 +13,7 @@ v1.0 (DONE)
 
 v1.1 (in-progress)
 
-- added CA and NAP support to gke.tf from https://github.com/GoogleCloudPlatform/gke-autoscaling-benchmarking/blob/main/stage02-cluster/cluster.tf
-- deployed python app in Cloud Run, created and uploaded Locust docker image Artefact Repository using howto https://medium.com/@bigface00/locust-distributed-load-testing-on-google-kubernetes-engine-f05ad9ce0fc4
+- added CA and NAP support to gke.tf using Gemini-cli
 
 TODO:
 - deploy Locust
