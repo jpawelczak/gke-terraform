@@ -1,12 +1,14 @@
 import requests
-import argparse
+import sys
 
 def main():
-    parser = argparse.ArgumentParser(description='Ask questions about your Google Calendar schedule.')
-    parser.add_argument('question', type=str, help='The question to ask about your schedule.')
-    args = parser.parse_args()
+    if len(sys.argv) < 2:
+        print('Usage: python calendar-cli.py <question>')
+        return
 
-    response = requests.post('http://localhost:8080/ask', json={'question': args.question})
+    question = ' '.join(sys.argv[1:])
+
+    response = requests.post('http://34.55.4.233/ask', json={'question': question})
 
     if response.status_code == 200:
         print(response.json()['answer'])
