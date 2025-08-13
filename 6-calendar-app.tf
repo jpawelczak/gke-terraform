@@ -1,3 +1,15 @@
+resource "kubernetes_secret" "google_token" {
+  metadata {
+    name = "google-token"
+  }
+
+  data = {
+    "token.json" = file("${path.module}/calendar-app/server/token.json")
+  }
+
+  type = "Opaque"
+}
+
 resource "kubernetes_secret" "google_credentials" {
   metadata {
     name = "google-credentials"
@@ -63,12 +75,25 @@ resource "kubernetes_deployment" "calendar_app" {
             mount_path = "/app/credentials.json"
             sub_path   = "credentials.json"
           }
+
+          volume_mount {
+            name       = "google-token"
+            mount_path = "/app/token.json"
+            sub_path   = "token.json"
+          }
         }
 
         volume {
           name = "google-credentials"
           secret {
             secret_name = kubernetes_secret.google_credentials.metadata[0].name
+          }
+        }
+
+        volume {
+          name = "google-token"
+          secret {
+            secret_name = kubernetes_secret.google_token.metadata[0].name
           }
         }
       }

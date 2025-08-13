@@ -26,7 +26,13 @@ spec:
         - name: google-credentials
           mountPath: "/app/credentials.json"
           subPath: "credentials.json"
+        - name: google-token
+          mountPath: "/app/token.json"
+          subPath: "token.json"
       volumes:
       - name: google-credentials
         secret:
           secretName: google-credentials
+      - name: google-token
+        secret:
+          secretName: google-token

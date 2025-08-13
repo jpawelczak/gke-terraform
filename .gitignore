@@ -39,6 +39,8 @@ variables.tf
 export.txt
 /calendar-app/secret.yaml
 /calendar-app/credentials-secret.yaml
+/calendar-app/token-secret.yaml
 /calendar-app/server/credentials.json
+/calendar-app/server/token.json
 /distributed-load-testing-using-kubernetes
 /gke-autoscaling-benchmarking
