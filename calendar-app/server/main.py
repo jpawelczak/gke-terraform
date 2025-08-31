@@ -1,5 +1,4 @@
-import datetime
-import datetime
+from datetime import datetime
 import os
 from flask import Flask, request, jsonify
 from google.auth.transport.requests import Request
@@ -31,7 +30,7 @@ service = build('calendar', 'v3', credentials=creds)
 # Gemini API setup
 GEMINI_API_KEY = os.environ.get('GEMINI_API_KEY')
 genai.configure(api_key=GEMINI_API_KEY)
-model = genai.GenerativeModel('gemini-pro')
+model = genai.GenerativeModel('gemini-2.5-pro')
 
 @app.route('/ask', methods=['POST'])
 def ask():
@@ -40,19 +39,19 @@ def ask():
 
     print(f"Question: {question}")
     # Get calendar events
-    now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
+    now = datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
     events_result = service.events().list(calendarId='primary', timeMin=now,
                                         maxResults=10, singleEvents=True,
                                         orderBy='startTime').execute()
     events = events_result.get('items', [])
 
     # Create a prompt for the Gemini API
-    prompt = f"""Here is my schedule for the next 10 events:
-{events}
-
-Question: {question}
-
-Answer:"""
+    prompt_lines = ["Here is my schedule for the next 10 events:"]
+    for event in events:
+        start = event['start'].get('dateTime', event['start'].get('date'))
+        prompt_lines.append(f"- {event['summary']} at {start}")
+    prompt_lines.append(f"\nQuestion: {question}\n\nAnswer:")
+    prompt = "\n".join(prompt_lines)
 
     print(f"Prompt: {prompt}")
     # Call the Gemini API

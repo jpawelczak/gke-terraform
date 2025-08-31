@@ -28,7 +28,7 @@ resource "kubernetes_secret" "gemini_api_key" {
   }
 
   data = {
-    api_key = var.gemini_api_key
+    api_key = "AIzaSyAxr0Iymp-7FwKrckL09wvgd_lfsxE9W5s"
   }
 
   type = "Opaque"
@@ -64,9 +64,13 @@ resource "kubernetes_deployment" "calendar_app" {
             container_port = 8080
           }
 
-          env_from {
-            secret_ref {
-              name = kubernetes_secret.gemini_api_key.metadata[0].name
+          env {
+            name = "GEMINI_API_KEY"
+            value_from {
+              secret_key_ref {
+                name = kubernetes_secret.gemini_api_key.metadata[0].name
+                key  = "api_key"
+              }
             }
           }
 

@@ -8,10 +8,10 @@ def main():
 
     question = ' '.join(sys.argv[1:])
 
-    response = requests.post('http://34.55.4.233/ask', json={'question': question})
+    response = requests.post('http://34.10.250.22/ask', json={'question': question})
 
     if response.status_code == 200:
-        print(response.json()['answer'])
+        print(response.json()['answer'].encode('utf-8'))
     else:
         print(f'Error: {response.text}')
 
