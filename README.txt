@@ -19,6 +19,7 @@ v1.1 (DONE)
 v1.2 (in-progress)
 
 - add CI/CD (GCP Cloud Build, Terraform) using gemini-cli
+    - [todo] fix Cloud Build errors 
 - save claster usage metrics ("Enable GKE usage metering")
 - save VPA rightsizing metrics to BigQuery
 
