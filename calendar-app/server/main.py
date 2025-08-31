@@ -57,7 +57,7 @@ def ask():
     # Call the Gemini API
     response = model.generate_content(prompt)
 
-    return jsonify({'answer': response.text})
+    return jsonify({'answer': f"v2.0: {response.text}"})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)

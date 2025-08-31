@@ -22,3 +22,10 @@ provider "google" {
   project = var.gke_project
   
 }
+
+   terraform {
+    backend "gcs" {
+      bucket  = "zeta-post-416508-tfstate"
+      prefix  = "terraform/state"
+     }
+   }
