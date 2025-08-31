@@ -1,0 +1,17 @@
+steps:
+# Build the container image
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/zeta-post-416508/calendar-app:latest', 'calendar-app']
+# Push the container image to Container Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/zeta-post-416508/calendar-app:latest']
+# Initialize Terraform
+- name: 'hashicorp/terraform:1.8.5'
+  entrypoint: 'terraform'
+  args: ['init']
+# Apply Terraform configuration
+- name: 'hashicorp/terraform:1.8.5'
+  entrypoint: 'terraform'
+  args: ['apply', '-auto-approve']
+images:
+- 'gcr.io/zeta-post-416508/calendar-app:latest'

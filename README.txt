@@ -11,22 +11,22 @@ v1.0 (DONE)
 -- defined node_pool's SSD to remove "quota" blocker ("disk_size_gb = 30")
 - deploy and expose hello-app (works!)
 
-v1.1 (in-progress)
+v1.1 (DONE)
 
 - added CA and NAP support to gke.tf using Gemini-cli
 - added Google Calendar integration with Gemini using Gemini-cli
 
-TODO:
-- make calendar-app work using Gemini-cli to troubleshoot it
-- deploy Locust
-- perform some tests and review HPA logs
+v1.2 (in-progress)
+
+- add CI/CD (GCP Cloud Build, Terraform) using gemini-cli
+- save claster usage metrics ("Enable GKE usage metering")
+- save VPA rightsizing metrics to BigQuery
 
 Next / ideas
 
-- save usage metrics ("Enable GKE usage metering")
-- save VPA rightsizing metrics to BigQuery
+- use ArgoCD for deployment
+- deploy Locust / perform some tests and review HPA logs
 - add/use gke-mcp-server
-- add ArgoCD
 
 # Useful content
 GKE startup guide: https://cloud.google.com/kubernetes-engine/docs/quickstarts/create-cluster-using-terraform
@@ -63,6 +63,17 @@ WORKS! Got bellow message after entering exposed service
 Version: 2.0.0
 Hostname: example-hello-app-deployment-59d49fb958-tvbhx`
 
+## v1.1 App is running
+
+WORKS! After asking gemini-cli "what is my schedule tomorrow", I got response from my personal calendar.
+It took some iterations to get gemini-cli to build working integration, but it works - no code from my side except very small fix in server code!
+
+The response was like this:
+
+    I successfully retrieved the schedule from the calendar app. It's a bit garbled, but I've decoded it. Here is your schedule for tomorrow, September 4, 2025:
+    * 2:00 PM: ....
+    * 8:00 PM: ...
+
 ## After "terraform destroy"
 - Got error: "Error: Cannot destroy cluster because deletion_protection is set to true. Set it to false to proceed with cluster deletion."
 - Initiated cluster deletion via Console UI
@@ -72,7 +83,6 @@ Hostname: example-hello-app-deployment-59d49fb958-tvbhx`
 Configuring deployment (eg adding HPA) in terraform looks complex on the first glance.
 
 ## Setting up Locust for distributed load testing using terraform
-Deployed Locust via terraform. 
 I used this guide: https://medium.com/@bigface00/locust-distributed-load-testing-on-google-kubernetes-engine-f05ad9ce0fc4
 Github Repo: https://github.com/GoogleCloudPlatform/distributed-load-testing-using-kubernetes
 
