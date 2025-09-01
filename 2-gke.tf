@@ -30,13 +30,13 @@ resource "google_container_cluster" "primary" {
     autoscaling_profile = "OPTIMIZE_UTILIZATION"
     resource_limits {
       resource_type = "cpu"
-      minimum       = 2
-      maximum       = 4 # in vCPU
+      minimum       = 1
+      maximum       = 2 # in vCPU
     }
     resource_limits {
       resource_type = "memory"
-      minimum       = 2
-      maximum       = 4 # in GiB
+      minimum       = 1
+      maximum       = 2 # in GiB
     }
     auto_provisioning_defaults {
       oauth_scopes = [
@@ -56,11 +56,11 @@ resource "google_container_node_pool" "primary_nodes" {
   cluster    = google_container_cluster.primary.name
   location   = "us-central1"
 
-  node_count = 2
+  node_count = 1
 
   autoscaling {
-    min_node_count = 2
-    max_node_count = 5
+    min_node_count = 1
+    max_node_count = 2
   }
 
   node_config {
@@ -74,7 +74,7 @@ resource "google_container_node_pool" "primary_nodes" {
     }
 
     preemptible  = true
-    machine_type = "e2-standard-4"
+    machine_type = "e2-small"
     disk_size_gb = 80
     tags         = ["gke-node", "gke-terraform"]
     metadata = {

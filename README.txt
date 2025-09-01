@@ -18,16 +18,19 @@ v1.1 (DONE)
 
 v1.2 (in-progress)
 
+- use Google Secret Manager for Gemini API Key
+
+TODO:
 - add CI/CD (GCP Cloud Build, Terraform) using gemini-cli
     - [todo] fix Cloud Build errors 
-- use Google Secret Manager for API Key
 - save claster usage metrics ("Enable GKE usage metering")
 - save VPA rightsizing metrics to BigQuery
+- fine-tune cost/performance trade-off for infra autoscaling settings
 
 Next / ideas
 
 - use ArgoCD for deployment
-- deploy Locust / perform some tests and review HPA logs
+- deploy Locust / perform some load tests and review HPA logs
 - add/use gke-mcp-server
 
 # Useful content
