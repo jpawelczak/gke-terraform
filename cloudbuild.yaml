@@ -20,5 +20,3 @@ images:
 - 'gcr.io/zeta-post-416508/calendar-app:latest'
 options:
   logging: CLOUD_LOGGING_ONLY
-included_files:
-- 'calendar-app/**'
