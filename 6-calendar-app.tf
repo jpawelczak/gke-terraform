@@ -22,13 +22,18 @@ resource "kubernetes_secret" "google_credentials" {
   type = "Opaque"
 }
 
+data "google_secret_manager_secret_version" "gemini_api_key" {
+  secret  = "gemini-api-key"
+  version = "latest"
+}
+
 resource "kubernetes_secret" "gemini_api_key" {
   metadata {
     name = "gemini-api-key"
   }
 
   data = {
-    api_key = "AIzaSyAxr0Iymp-7FwKrckL09wvgd_lfsxE9W5s"
+    api_key = data.google_secret_manager_secret_version.gemini_api_key.secret_data
   }
 
   type = "Opaque"

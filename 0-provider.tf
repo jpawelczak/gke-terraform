@@ -19,7 +19,7 @@ terraform {
 
 provider "google" {
   # Configuration options
-  project = "zeta-post-416508"
+  project = var.gke_project
   
 }
 
