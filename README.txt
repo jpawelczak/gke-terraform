@@ -14,7 +14,8 @@ v1.0 (DONE)
 v1.1 (DONE)
 
 - added CA and NAP support to gke.tf using Gemini-cli
-- added Google Calendar integration with Gemini using Gemini-cli
+- added Google Calendar integration with Gemini using Gemini-cli (works: "I successfully retrieved the schedule from the calendar app. It's a bit garbled, but I've decoded it. Here is your schedule for tomorrow, September 4, 2025:
+ ...")
 
 v1.2 (in-progress)
 
