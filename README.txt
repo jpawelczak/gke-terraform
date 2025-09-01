@@ -20,6 +20,7 @@ v1.1 (DONE)
 v1.2 (in-progress)
 
 - use Google Secret Manager for Gemini API Key
+- improved calendar-cli to get latest calendar-app service IP as part of the script
 
 TODO:
 - add CI/CD (GCP Cloud Build, Terraform) using gemini-cli
