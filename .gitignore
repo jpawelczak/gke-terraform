@@ -37,6 +37,7 @@ override.tf.json
 terraform.rc
 variables.tf
 export.txt
+cloudbuild.yaml
 /calendar-app/secret.yaml
 /calendar-app/credentials-secret.yaml
 /calendar-app/token-secret.yaml
