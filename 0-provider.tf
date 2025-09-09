@@ -20,12 +20,11 @@ terraform {
 provider "google" {
   # Configuration options
   project = var.gke_project
-  
 }
 
    terraform {
     backend "gcs" {
-      bucket  = "zeta-post-416508-tfstate"
+      bucket  = var.gcs_bucket
       prefix  = "terraform/state"
      }
    }

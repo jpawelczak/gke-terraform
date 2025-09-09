@@ -19,10 +19,11 @@ v1.1 (DONE)
 
 v1.2 (in-progress)
 
-- use Google Secret Manager for Gemini API Key
+- added Google Secret Manager for Gemini API Key
 - improved calendar-cli to get latest calendar-app service IP as part of the script
 
 TODO:
+- add resource requests and limits for deployments and services
 - add CI/CD (GCP Cloud Build, Terraform) using gemini-cli
     - [todo] fix Cloud Build errors 
 - save claster usage metrics ("Enable GKE usage metering")
@@ -32,6 +33,7 @@ TODO:
 Next / ideas
 
 - use ArgoCD for deployment
+- migrate to Autopilot Cluster
 - deploy Locust / perform some load tests and review HPA logs
 - add/use gke-mcp-server
 
