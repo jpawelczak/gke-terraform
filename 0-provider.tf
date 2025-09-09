@@ -24,7 +24,7 @@ provider "google" {
 
    terraform {
     backend "gcs" {
-      bucket  = var.gcs_bucket
+      bucket  = "gke-terraform-tfstate"
       prefix  = "terraform/state"
      }
    }
